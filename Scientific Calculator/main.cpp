@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cmath>  // Required for trigonometric functions
+
 using namespace std;
 
 double num1, num2;
@@ -41,6 +43,52 @@ double power(double base, int exponent) {
     return result;
 }
 
+double square(double num) {
+    return num * num;
+}
+
+double squareRoot(double num) {
+    return sqrt(num);
+}
+
+double cube(double num) {
+    return num * num * num;
+}
+
+double cubeRoot(double num) {
+    return cbrt(num);
+}
+
+double reciprocal(double num) {
+    if (num != 0) {
+        return 1.0 / num;
+    } else {
+        cout << "Error! Division by zero." << endl;
+        return 0;
+    }
+}
+
+double calculateSine(double angle, bool isDegree = true) {
+    if (isDegree) {
+        angle = angle * (M_PI / 180.0);
+    }
+    return sin(angle);
+}
+
+double calculateCosine(double angle, bool isDegree = true) {
+    if (isDegree) {
+        angle = angle * (M_PI / 180.0);
+    }
+    return cos(angle);
+}
+
+double calculateTangent(double angle, bool isDegree = true) {
+    if (isDegree) {
+        angle = angle * (M_PI / 180.0);
+    }
+    return tan(angle);
+}
+
 int bitwise_and(int num1, int num2) {
     return num1 & num2;
 }
@@ -64,16 +112,28 @@ int main() {
         cout << "4. Divide\n";
         cout << "5. Modulus\n";
         cout << "6. Power\n";
-        cout << "7. Bitwise AND\n";
-        cout << "8. Bitwise OR\n";
-        cout << "9. Bitwise XOR\n";
-        cout << "10. Exit\n";
+        cout << "7. Square\n";
+        cout << "8. Square Root\n";
+        cout << "9. Cube\n";
+        cout << "10. Cube Root\n";
+        cout << "11. Reciprocal\n";
+        cout << "12. Sine\n";
+        cout << "13. Cosine\n";
+        cout << "14. Tangent\n";
+        cout << "15. Bitwise AND\n";
+        cout << "16. Bitwise OR\n";
+        cout << "17. Bitwise XOR\n";
+        cout << "18. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
 
-        if (choice >= 1 && choice <= 9) {
-            cout << "Enter two numbers: ";
-            cin >> num1 >> num2;
+        if (choice >= 1 && choice <= 17) {
+            cout << "Enter first number: ";
+            cin >> num1;
+            if (choice <= 6 || (choice >= 15 && choice <= 17)) {
+                cout << "Enter second number: ";
+                cin >> num2;
+            }
         }
 
         switch (choice) {
@@ -96,22 +156,61 @@ int main() {
                 cout << "Result: " << power(num1, (int)num2) << endl;
                 break;
             case 7:
-                cout << "Result: " << bitwise_and((int)num1, (int)num2) << endl;
+                cout << "Result: " << square(num1) << endl;
                 break;
             case 8:
-                cout << "Result: " << bitwise_or((int)num1, (int)num2) << endl;
+                cout << "Result: " << squareRoot(num1) << endl;
                 break;
             case 9:
-                cout << "Result: " << bitwise_xor((int)num1, (int)num2) << endl;
+                cout << "Result: " << cube(num1) << endl;
                 break;
             case 10:
+                cout << "Result: " << cubeRoot(num1) << endl;
+                break;
+            case 11:
+                cout << "Result: " << reciprocal(num1) << endl;
+                break;
+            case 12: {
+                char angleType;
+                cout << "Is the angle in degrees? (y/n): ";
+                cin >> angleType;
+                bool isDegree = (angleType == 'y' || angleType == 'Y');
+                cout << "Result: " << calculateSine(num1, isDegree) << endl;
+                break;
+            }
+            case 13: {
+                char angleType;
+                cout << "Is the angle in degrees? (y/n): ";
+                cin >> angleType;
+                bool isDegree = (angleType == 'y' || angleType == 'Y');
+                cout << "Result: " << calculateCosine(num1, isDegree) << endl;
+                break;
+            }
+            case 14: {
+                char angleType;
+                cout << "Is the angle in degrees? (y/n): ";
+                cin >> angleType;
+                bool isDegree = (angleType == 'y' || angleType == 'Y');
+                cout << "Result: " << calculateTangent(num1, isDegree) << endl;
+                break;
+            }
+            case 15:
+                cout << "Result: " << bitwise_and((int)num1, (int)num2) << endl;
+                break;
+            case 16:
+                cout << "Result: " << bitwise_or((int)num1, (int)num2) << endl;
+                break;
+            case 17:
+                cout << "Result: " << bitwise_xor((int)num1, (int)num2) << endl;
+                break;
+            case 18:
                 cout << "Exiting..." << endl;
                 break;
             default:
                 cout << "Invalid choice! Please try again." << endl;
         }
         cout << endl;
-    } while (choice != 10);
+    } while (choice != 18);
 
     return 0;
 }

@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cmath>  // Required for trigonometric functions
+#include <cmath>
 
 using namespace std;
 
